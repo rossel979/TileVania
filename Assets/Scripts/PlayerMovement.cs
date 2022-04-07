@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         { 
             
             myRigidbody.gravityScale = fltgravityScaleAtStart;
+            myAnimator.SetBool("isClimbing", false);
             return;
         }
         
@@ -78,5 +79,7 @@ public class PlayerMovement : MonoBehaviour
         
         myRigidbody.velocity = climbVelocity;
         myRigidbody.gravityScale = 0f;
+        bool boolplayerHasverticalSpeed = Mathf.Abs(myRigidbody.velocity.y) > Mathf.Epsilon;
+        myAnimator.SetBool("isClimbing", boolplayerHasverticalSpeed);
     }
 }
