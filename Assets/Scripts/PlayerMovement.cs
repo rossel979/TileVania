@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float fltrunSpeed = 10f;
     [SerializeField] float fltjumpSpeed = 5f;
     [SerializeField] float fltclimbSpeed = 5f;
+    [SerializeField] Vector2 deathKick = new Vector2(10f,10f);
     Vector2 boolmoveInput;
     Rigidbody2D myRigidbody;
     Animator myAnimator;
@@ -95,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
         {
             boolisAlive = false;
+            myAnimator.SetTrigger("Dying");
+            myRigidbody.velocity = deathKick;
         }
     }
 }
